@@ -73,6 +73,16 @@ const ProductUpdateModal: React.FC<ProductUpdateModalProps> = ({ show, product, 
                 onChange={handleChange}
               />
             </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>URL</Form.Label>
+              <Form.Control
+                as="textarea"
+                name="url"
+                value={formData.url || ''}
+                onChange={handleChange}
+              />
+            </Form.Group>
           </Form>
         )}
       </Modal.Body>

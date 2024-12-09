@@ -94,6 +94,15 @@ const ProductCreateModal: React.FC<ProductCreateModalProps> = ({ show, onClose, 
               onChange={handleChange}
             />
           </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>URL</Form.Label>
+            <Form.Control
+              type="text"
+              name="url"
+              value={formData.url}
+              onChange={handleChange}
+            />
+          </Form.Group>
         </Form>
       </Modal.Body>
       <Modal.Footer>

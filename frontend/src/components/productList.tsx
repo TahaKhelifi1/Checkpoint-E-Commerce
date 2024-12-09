@@ -16,6 +16,7 @@ const ProductList : React.FC<ProductListProps> = ({products, onDelete, onEdit}) 
         <th>Name</th>
         <th>Price</th>
         <th>Stock</th>
+        <th>URL</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -27,6 +28,7 @@ const ProductList : React.FC<ProductListProps> = ({products, onDelete, onEdit}) 
           <td>{product.name}</td>
           <td>${product.price.toFixed(2)}</td>
           <td>{product.stock}</td>
+          <td>{product.url || 'No image URL provided'}</td>
           <td>
               <Button
                 variant="primary"

@@ -4,5 +4,6 @@ export default interface IProduct {
     price: number,
     description?: string,
     category?: string, 
-    stock: number
+    stock: number,
+    url?:string
 }

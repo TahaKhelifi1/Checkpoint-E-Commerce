@@ -7,7 +7,6 @@ const router : Router = express.Router()
 router.get('/' , async (req:Request, res: Response): Promise<void> => {
     try{
         const products: IProduct[] = await Product.find();
-        console.log(products)
         res.status(200).json(products)
     } catch(err) {
         res.status(500).json({message: err instanceof Error ? err.message : 'Error'})

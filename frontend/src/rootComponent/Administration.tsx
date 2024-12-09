@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
-import ProductList from './components/productList';
-import IProduct from './interfaces/product';
-import { createProduct, deleteProduct, fetchProducts, updateProduct } from './services/api/products';
+import '../App.css';
+import ProductList from '../components/productList';
+import IProduct from '../interfaces/product';
+import { createProduct, deleteProduct, fetchProducts, updateProduct } from '../services/api/products';
 import { Container, Button } from 'react-bootstrap';
-import ProductUpdateModal from './components/ProductUpdateModal';
-import ProductCreateModal from './components/ProductCreateModal';
-function App() {
+import ProductUpdateModal from '../components/ProductUpdateModal';
+import ProductCreateModal from '../components/ProductCreateModal';
+function Administration() {
   const [products, setProducts] = useState<IProduct[]>([])
   const [editProduct, setEditProduct] = useState<IProduct | null>(null);
   const [showCreateModal, setShowCreateModal] = useState(false);
 
   async function loadProducts() : Promise<void>{
     const {data} : any = await fetchProducts()
-    console.log(data)
     setProducts(data)
   }
   useEffect(()=> {
@@ -68,4 +67,4 @@ function App() {
   );
 }
 
-export default App;
+export default Administration;

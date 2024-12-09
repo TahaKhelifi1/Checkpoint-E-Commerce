@@ -5,15 +5,17 @@ export interface IProduct extends Document {
     price: number,
     description?: string,
     category?: string, 
-    stock: number
+    stock: number,
+    url?: string
 }
 
-const ProductSchema = new mongoose.Schema({
+const ProductSchema = new Schema({
     name: {type: String, required : true},
     price: {type: Number, required : true}, 
     description : {type: String},
     category: {type: String},
-    stock : {type: Number, required : true}
+    stock : {type: Number, required : true},
+    url : {type:String, required: false}
 })
 
 export default mongoose.model<IProduct>('Product', ProductSchema)
