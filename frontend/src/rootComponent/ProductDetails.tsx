@@ -2,11 +2,15 @@ import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router"
 import IProduct from "../interfaces/product"
 import { fetchProductById } from "../services/api/products"
-import { Card, Container } from "react-bootstrap"
+import { Button, Card, Container } from "react-bootstrap"
+import IBasket from "../interfaces/basket"
+import { addToBasket, fetchBasketByUsername } from "../services/api/basket"
 
 const ProductDetails = () => {
     const {id} = useParams<{id: string}>()
     const [product, setProduct] = useState<IProduct|null> (null)
+    const [basket, setBasket] = useState<IBasket | null>(null)
+
     const navigate = useNavigate()
     useEffect (() => {
         const loadProduct = async () => {
@@ -21,9 +25,20 @@ const ProductDetails = () => {
                 
             }
         }
+        async function loadBasket() : Promise<void>{
+            const {data} : any = await fetchBasketByUsername('admin')
+            setBasket(data)
+          }
+
         loadProduct()
+        loadBasket()
     }, [id])
 
+    const onAddToBasket =  async () => {
+        const { data }: any = await addToBasket("admin", id ?? '');
+        
+        setBasket(data);
+    }
     if (!product) {
         return <Container>Loading ....</Container>
     }
@@ -39,6 +54,8 @@ const ProductDetails = () => {
               <strong>Category:</strong> {product.category} <br />
               <strong>Description:</strong> {product.description}
             </Card.Text>
+            <Button onClick={onAddToBasket} variant="primary">Add to Basket</Button> 
+
           </Card.Body>
         </Card>
       </Container>

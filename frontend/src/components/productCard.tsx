@@ -4,10 +4,11 @@ import { Navigate, useNavigate } from "react-router";
 
 interface ProductCardProps {
     product : IProduct
+    onAddToBasket : () => void
 }
 
 
-const ProductCard: React.FC<ProductCardProps> = ({product}) => {
+const ProductCard: React.FC<ProductCardProps> = ({product, onAddToBasket}) => {
     const navigate = useNavigate()
     const goToProductDetails = (id : string) => {
         navigate(`/product/${id}`)
@@ -25,6 +26,7 @@ const ProductCard: React.FC<ProductCardProps> = ({product}) => {
                 description: {product.description || ''}
                 </Card.Text>
                 <Button onClick={()=> goToProductDetails(product._id!)} variant="primary">Go to the product</Button> 
+                <Button onClick={onAddToBasket} variant="primary">Add to Basket</Button> 
             </Card.Body>
         </Card>
     )
