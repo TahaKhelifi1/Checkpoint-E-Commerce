@@ -1,5 +1,6 @@
 import { Button, Card } from "react-bootstrap";
 import IProduct from "../interfaces/product";
+import { Navigate, useNavigate } from "react-router";
 
 interface ProductCardProps {
     product : IProduct
@@ -7,10 +8,14 @@ interface ProductCardProps {
 
 
 const ProductCard: React.FC<ProductCardProps> = ({product}) => {
+    const navigate = useNavigate()
+    const goToProductDetails = (id : string) => {
+        navigate(`/product/${id}`)
+    }
     return (
-        <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={product.url || ''} />
-            <Card.Body>
+        <Card className="product-card h-100">
+            <Card.Img className="card-img-custom" variant="top" src={product.url || 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZHVjdHxlbnwwfHwwfHx8MA%3D%3D'} />
+            <Card.Body className="d-flex flex-column">
                 <Card.Title>{product.name}</Card.Title>
                 <Card.Text>
                 price: {product.price}
@@ -19,7 +24,7 @@ const ProductCard: React.FC<ProductCardProps> = ({product}) => {
                 <br/>
                 description: {product.description || ''}
                 </Card.Text>
-                <Button href={"/product/"+{product._id}}  variant="primary">Go to the product</Button>
+                <Button onClick={()=> goToProductDetails(product._id!)} variant="primary">Go to the product</Button> 
             </Card.Body>
         </Card>
     )

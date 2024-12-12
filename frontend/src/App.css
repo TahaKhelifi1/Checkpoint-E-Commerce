@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card-img-custom {
+  width: 100%; /* Ensure it spans the card width */
+  height: 200px; /* Fixed height for consistency */
+  object-fit: cover; /* Maintain aspect ratio and crop overflow */
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+}

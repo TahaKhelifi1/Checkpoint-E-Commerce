@@ -3,6 +3,7 @@ import IProduct from "../interfaces/product"
 import { fetchProducts } from "../services/api/products"
 import ProductCreateModal from "../components/ProductCreateModal"
 import ProductCard from "../components/productCard"
+import { Col, Container, Row } from "react-bootstrap"
 
 function User () {
 
@@ -16,15 +17,18 @@ function User () {
       }, [])
     
     return (
-    <div>
+    <Container className="my-4">
+        <h1 className="mb-4">Available Products</h1>
+        <Row>
         {products && products.map((product : IProduct) => {
            return (
-            <div key={product._id}>
+            <Col key={product._id} md={4} className="mb-4">
                 <ProductCard product={product}/>
-            </div>
+            </Col>
            )
         })}
-    </div>
+        </Row>
+    </Container>
     )
     
 }

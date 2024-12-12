@@ -6,6 +6,7 @@ import User from './rootComponent/User';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Route, Routes } from 'react-router';
+import ProductDetails from './rootComponent/ProductDetails';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -15,6 +16,7 @@ root.render(
     <Routes>
       <Route path='/' element= {<User/>}> </Route>
       <Route path='/admin' element={<Administration/>}></Route>
+      <Route path='/product/:id' element={<ProductDetails/>}></Route>
     </Routes>
   </BrowserRouter>
 );
