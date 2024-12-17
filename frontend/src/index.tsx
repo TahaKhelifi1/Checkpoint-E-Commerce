@@ -7,6 +7,8 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Route, Routes } from 'react-router';
 import ProductDetails from './rootComponent/ProductDetails';
+import Login from './rootComponent/Login';
+import ProtectedRoute from './rootComponent/protectedRoutes';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -14,9 +16,19 @@ const root = ReactDOM.createRoot(
 root.render(
   <BrowserRouter>
     <Routes>
-      <Route path='/' element= {<User/>}> </Route>
-      <Route path='/admin' element={<Administration/>}></Route>
-      <Route path='/product/:id' element={<ProductDetails/>}></Route>
+      <Route path='/' element= {
+                          <ProtectedRoute roles = {["user"]}> 
+                            <User/>
+                          </ProtectedRoute>
+                        }>
+      </Route>
+      <Route path='/admin' element={<ProtectedRoute roles = {["admin"]}>
+        <Administration/>
+        </ProtectedRoute>
+      }></Route>
+      <Route path='/product/:id' element={<ProtectedRoute roles = {["user"]}><ProductDetails/></ProtectedRoute>}></Route>
+      <Route path='/login' element={<Login></Login>}> </Route>
+      <Route path='/unauthorized' element={<div>Unauthorized page</div>}> </Route>
     </Routes>
   </BrowserRouter>
 );

@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import productRouter from './routes/productRoutes' /// router as productRouter
 import basketRouter from './routes/basketRoutes'
+import userRouter, { verifyJWT } from './routes/userRoutes'
 import cors = require("cors");
 
 dotenv.config()
@@ -22,3 +23,4 @@ app.listen(PORT, () => {
 
 app.use('/api/product', productRouter)
 app.use('/api/basket', basketRouter)
+app.use('/api/user', userRouter)
